@@ -15,7 +15,7 @@ def main(page: ft.Page):
         sec_value = int(seconds.value)
         while sec_value:
             mins, secs = divmod(sec_value, 60)
-            time.value = '{:02d} min {:02d} sec'.format(mins, sec_value)
+            time.value = '{:02d} min {:02d} sec'.format(mins, secs)
             sleep(1)
             sec_value = sec_value - 1
             page.update()
