@@ -23,7 +23,7 @@ def main(page:ft.Page):
     page.update()
 
     page.add(
-        ft.ElevatedButton("Choose Files...", on_click=lambda _: file_picker.pick_files(allow_multiple=True))
+        ft.ElevatedButton("Choose Files...", on_click=lambda _: file_picker.pick_files(allow_multiple=False))
     )
 
 ft.app(target=main, view=ft.WEB_BROWSER)
