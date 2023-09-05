@@ -37,6 +37,7 @@ def main(page: Page):
     prog_bars: Dict[str, ProgressRing] = {}
     files = Ref[Column]()
     upload_button = Ref[ElevatedButton]()
+    file_names_print = []
 
     def file_picker_result(e: FilePickerResultEvent):
         upload_button.current.disabled = True if e.files is None else False
@@ -59,6 +60,9 @@ def main(page: Page):
         uf = []
         if file_picker.result is not None and file_picker.result.files is not None:
             for f in file_picker.result.files:
+                #   global file_names_print
+                file_names_print.append(str(f.name))
+                print(file_names_print)
                 uf.append(
                     FilePickerUploadFile(
                         f.name,
