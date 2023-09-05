@@ -1,6 +1,8 @@
 import flet as ft
 import qrcode
 import cv2
+import datetime
+from clear_qrs import clear_qr_codes
 
 def main(page: ft.Page):
     page.title = "QR Code Scanner and Generator"
@@ -14,6 +16,7 @@ def main(page: ft.Page):
     page.window_bgcolor = '#522125'
 
     qr_to_show = ft.Image(width=200)
+    timestamp = ""
 
     dlg = ft.AlertDialog(
         title=ft.Text('Scan QR Code',text_align='center'),
@@ -26,14 +29,19 @@ def main(page: ft.Page):
         page.update()
         
     def generate_qrCode(e):
+        clear_qr_codes()
         img = qrcode.make(str(user_content.value))
-        img.save('assets/qr/qrCode.jpg')
-        qr_to_show.src = 'qr/qrCode.jpg'
+        current_datetime = datetime.datetime.now()
+        global timestamp
+        timestamp = current_datetime.strftime("%Y-%m-%d_%H-%M-%S")
+        img.save(f'assets/qr/qrCode_{timestamp}.jpg')
+        qr_to_show.src = f'qr/qrCode_{timestamp}.jpg'
         open_dlg(e)
         page.update()
     
     def scan_qrCode(e):
-        img = str('assets/qr/qrCode.jpg')
+        global timestamp
+        img = str(f'assets/qr/qrCode_{timestamp}.jpg')
         detector = cv2.QRCodeDetector()
         value, _, _ = detector.detectAndDecode(cv2.imread(img))
         show_qr_content.value = value
