@@ -20,9 +20,4 @@ This repository houses a variety of examples, projects, and resources to help yo
 12. [TimerApp](12_TimerApp) - Building a timer application with a watermark feature.
 13. [QRi.Py](13_QRi.Py) - Generating multiple QR codes with Flet.
 
-
-## License
-
-This repository is licensed under the [MIT License](LICENSE).
-
 Happy learning with Flet! 🌐💻
